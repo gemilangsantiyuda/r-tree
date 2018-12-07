@@ -1,5 +1,6 @@
 package model
 
 type RTree struct {
-	Root *BranchNode
+	MinEntry, MaxEntry int
+	Root               *BranchNode
 }
