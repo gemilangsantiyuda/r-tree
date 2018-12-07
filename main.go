@@ -4,21 +4,25 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/r-tree/model"
+	"github.com/r-tree/pkg/coordinate"
 )
 
 func main() {
 	const COORD_N = 10
-	var coordList []model.Coordinate
+	const MIN_ENTRY = 2
+	const MAX_ENTRY = 4
+	var coordList []coordinate.Coordinate
 
 	// generate random coordinate
 	for idx := 0; idx < COORD_N; idx++ {
-		coordinate := model.Coordinate{
+		coordinate := coordinate.Coordinate{
 			X: float64(rand.Intn(20)),
 			Y: float64(rand.Intn(20)),
 		}
 		coordList = append(coordList, coordinate)
 	}
+
+	// Tree := rtree.NewTree(MIN_ENTRY, MAX_ENTRY)
 
 	fmt.Print(coordList)
 }

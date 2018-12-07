@@ -1,4 +1,4 @@
-package model
+package coordinate
 
 //Coordinate struct for coordinate, thats all
 type Coordinate struct {
