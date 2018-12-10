@@ -4,30 +4,33 @@ import (
 	"github.com/r-tree/pkg/rectangle"
 )
 
+// BranchNode struct for branch nodes
 type BranchNode struct {
 	Parent    *BranchNode
 	Rectangle *rectangle.Rectangle
 	Entries   []Node
 }
 
-func (self *BranchNode) GetRectangle() *rectangle.Rectangle {
-	return self.Rectangle
+// GetRectangle function so it implements Node
+func (bn *BranchNode) GetRectangle() *rectangle.Rectangle {
+	return bn.Rectangle
 }
 
-func (self *BranchNode) UpdateRectangle() {
+// UpdateRectangle updating rectangle as combined area of its entries' rectangles
+func (bn *BranchNode) UpdateRectangle() {
 	// if it has no entries, just return
-	if len(self.Entries) == 0 {
+	if len(bn.Entries) == 0 {
 		return
 	}
 
 	// else create new rectangle out of combined rectangles from all its entries
 	var newRect *rectangle.Rectangle
-	*newRect = *self.Entries[0].GetRectangle()
+	*newRect = *bn.Entries[0].GetRectangle()
 
-	for _, entry := range self.Entries {
+	for _, entry := range bn.Entries {
 		rect := entry.GetRectangle()
 		newRect = rectangle.GetCombinedRectangle(newRect, rect)
 	}
 
-	self.Rectangle = newRect
+	bn.Rectangle = newRect
 }
