@@ -5,8 +5,12 @@ import (
 )
 
 func NewTree(MinEntry, MaxEntry int) *model.RTree {
+
+	newRoot := &model.LeafNode{}
+
 	return &model.RTree{
 		MinEntry: MinEntry,
 		MaxEntry: MaxEntry,
+		Root:     newRoot,
 	}
 }
