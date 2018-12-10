@@ -1,4 +1,4 @@
-package r_tree
+package rtree
 
 import (
 	"github.com/r-tree/pkg/r_tree/model"
@@ -6,7 +6,7 @@ import (
 )
 
 //FindLeaf : Given an index from the list of coordinate, find the leaf node that contains
-func FindLeaf(rtree *model.RTree, node model.Node, index int, rect *rectangle.Rectangle) *model.LeafNode {
+func (rtree *RTree) FindLeaf(node model.Node, index int, rect *rectangle.Rectangle) *model.LeafNode {
 
 	// check if node is branch node or leaf node (LeafNode)
 	if _, ok := node.(*model.LeafNode); ok {
@@ -26,7 +26,7 @@ func FindLeaf(rtree *model.RTree, node model.Node, index int, rect *rectangle.Re
 	// check all entries that has its rectangles overlaps rect
 	for _, entry := range bNode.Entries {
 		if rectangle.IsOverlap(entry.GetRectangle(), rect) {
-			foundLeaf := FindLeaf(rtree, entry, index, rect)
+			foundLeaf := rtree.FindLeaf(entry, index, rect)
 			if foundLeaf != nil {
 				return foundLeaf
 			}

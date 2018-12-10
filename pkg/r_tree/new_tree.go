@@ -1,14 +1,15 @@
-package r_tree
+package rtree
 
 import (
 	"github.com/r-tree/pkg/r_tree/model"
 )
 
-func NewTree(MinEntry, MaxEntry int) *model.RTree {
+// NewTree function to init new r-tree
+func NewTree(MinEntry, MaxEntry int) *RTree {
 
 	newRoot := &model.LeafNode{}
 
-	return &model.RTree{
+	return &RTree{
 		MinEntry: MinEntry,
 		MaxEntry: MaxEntry,
 		Root:     newRoot,
