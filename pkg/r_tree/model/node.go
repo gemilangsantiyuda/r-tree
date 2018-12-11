@@ -8,4 +8,6 @@ import (
 type Node interface {
 	UpdateRectangle()
 	GetRectangle() *rectangle.Rectangle
+	GetParent() Node
+	SetParent(Node)
 }

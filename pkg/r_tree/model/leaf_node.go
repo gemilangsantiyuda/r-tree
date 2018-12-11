@@ -34,3 +34,19 @@ func (ln *LeafNode) UpdateRectangle() {
 
 	ln.Rectangle = newRect
 }
+
+// Insert insert a leaf entry into the leaf node's entries
+func (ln *LeafNode) Insert(leafEntry *LeafEntry) {
+	leafEntry.Parent = ln
+	ln.Entries = append(ln.Entries, leafEntry)
+}
+
+// GetParent get this node's parent node
+func (ln *LeafNode) GetParent() Node {
+	return ln.Parent
+}
+
+// SetParent set this node's parent node
+func (ln *LeafNode) SetParent(node Node) {
+	ln.Parent = node.(*BranchNode)
+}

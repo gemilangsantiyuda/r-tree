@@ -34,3 +34,19 @@ func (bn *BranchNode) UpdateRectangle() {
 
 	bn.Rectangle = newRect
 }
+
+// Insert insert nodes to the branch node's entries
+func (bn *BranchNode) Insert(node Node) {
+	node.SetParent(bn)
+	bn.Entries = append(bn.Entries, node)
+}
+
+// GetParent get this node's parent
+func (bn *BranchNode) GetParent() Node {
+	return bn.Parent
+}
+
+// SetParent set this node's parent
+func (bn *BranchNode) SetParent(node Node) {
+	bn.Parent = node.(*BranchNode)
+}
