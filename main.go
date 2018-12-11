@@ -10,13 +10,13 @@ import (
 )
 
 func main() {
-	const COORD_N = 10
-	const MIN_ENTRY = 2
-	const MAX_ENTRY = 4
+	const coordN = 10
+	const minEntry = 2
+	const maxEntry = 4
 	var coordList []coordinate.Coordinate
 
 	// generate random coordinate
-	for idx := 0; idx < COORD_N; idx++ {
+	for idx := 0; idx < coordN; idx++ {
 		coordinate := coordinate.Coordinate{
 			X: float64(rand.Intn(20)),
 			Y: float64(rand.Intn(20)),
@@ -24,7 +24,7 @@ func main() {
 		coordList = append(coordList, coordinate)
 	}
 
-	Tree := rtree.NewTree(MIN_ENTRY, MAX_ENTRY)
+	Tree := rtree.NewTree(minEntry, maxEntry)
 
 	fmt.Print(reflect.TypeOf(Tree))
 }
