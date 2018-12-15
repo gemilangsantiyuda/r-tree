@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"math/rand"
 
+	"github.com/r-tree/pkg/rectangle"
+
 	"github.com/r-tree/pkg/coordinate"
 	rtree "github.com/r-tree/pkg/r_tree"
 )
@@ -31,5 +33,21 @@ func main() {
 		coord := coordList[idx]
 		Tree.Insert(idx, &coord)
 		// fmt.Println("success", idx+1)
+	}
+
+	rect := &rectangle.Rectangle{
+		LowerLeft: &coordinate.Coordinate{
+			X: 14,
+			Y: 0,
+		},
+		UpperRight: &coordinate.Coordinate{
+			X: 17,
+			Y: 17,
+		},
+	}
+	indexes := Tree.Search(rect)
+	fmt.Println("___")
+	for _, index := range indexes {
+		fmt.Println(coordList[index])
 	}
 }
