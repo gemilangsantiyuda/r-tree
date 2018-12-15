@@ -3,7 +3,7 @@ package rtree
 import "github.com/r-tree/pkg/r_tree/model"
 
 // AdjustTree method to adjust tree after inserting new leaf entry, to adjust the new area of nodes and especially to handle splitting that causes another splitting
-func (rtree *RTree) AdjustTree(node, node2 model.Node) {
+func (rtree *RTree) adjustTree(node, node2 model.Node) {
 	// check if node is the tree root
 	if node == rtree.Root {
 		// check if node2 is not null or the root was split before
@@ -33,10 +33,10 @@ func (rtree *RTree) AdjustTree(node, node2 model.Node) {
 	if len(parent.Entries) > rtree.MaxEntry {
 		// parent, parent2 := rtree.Split(parent)
 		// then adjust tree right up with parent and parent2
-		rtree.AdjustTree(parent /*parent2*/, nil)
+		rtree.adjustTree(parent /*parent2*/, nil)
 	} else {
 		// update parent rectangle and adjust tree up to parent
 		parent.UpdateRectangle()
-		rtree.AdjustTree(parent, nil)
+		rtree.adjustTree(parent, nil)
 	}
 }

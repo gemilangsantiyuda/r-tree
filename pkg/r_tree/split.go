@@ -10,7 +10,7 @@ import (
 
 // Split : in case of exceeding entries' size of a node, then the node has to be split
 // the split is of quadratic split
-func (rtree *RTree) Split(node model.Node) (model.Node, model.Node) {
+func (rtree *RTree) split(node model.Node) (model.Node, model.Node) {
 	// if node is leafnode then split into two leaf nodes
 	if _, ok := node.(*model.LeafNode); ok {
 		return splitLeaf(node)

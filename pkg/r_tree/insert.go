@@ -21,10 +21,10 @@ func (rtree *RTree) Insert(index int, coordinate *coordinate.Coordinate) {
 	// if after the insertion the size of entries in insertedLeafNode exceeds max size
 	// then invoke split
 	if len(insertedLeafNode.Entries) > rtree.MaxEntry {
-		insertedNode, newNode := rtree.Split(insertedLeafNode)
-		rtree.AdjustTree(insertedNode, newNode)
+		insertedNode, newNode := rtree.split(insertedLeafNode)
+		rtree.adjustTree(insertedNode, newNode)
 	} else {
-		rtree.AdjustTree(insertedLeafNode, nil)
+		rtree.adjustTree(insertedLeafNode, nil)
 	}
 
 	// for _, entry := range insertedLeafNode.Entries {
