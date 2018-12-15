@@ -24,8 +24,9 @@ func splitBranch(node model.Node) (model.Node, model.Node) {
 	// save its entries into another list
 	entries := make([]model.Node, len(bNode.Entries))
 	copy(entries, bNode.Entries)
-	// reset the entries of bNode to nil
+	// reset the entries of bNode to nil and reset its rectangle
 	bNode.Entries = nil
+	bNode.Rectangle = &rectangle.Rectangle{}
 
 	// make a new node
 	newNode := &model.BranchNode{}
@@ -33,10 +34,8 @@ func splitBranch(node model.Node) (model.Node, model.Node) {
 	// pick seed1 and seed2 , the 2 initial entries that each will be inserted into different nodes
 	entries, seed1, seed2 := pickSeeds(entries)
 	bNode.Insert(seed1)
-	bNode.UpdateRectangle()
 
 	newNode.Insert(seed2)
-	newNode.UpdateRectangle()
 	// then insert the rest according to insertNext until nothing left to insert
 	for len(entries) > 0 {
 		var pickedEntry, insertedNodeIntf model.Node
@@ -52,8 +51,9 @@ func splitLeaf(node model.Node) (model.Node, model.Node) {
 	// save its entries into another list
 	entries := make([]*model.LeafEntry, len(lNode.Entries))
 	copy(entries, lNode.Entries)
-	// reset the entries of lNode to nil
+	// reset the entries of lNode to nil, and reset its rectangle
 	lNode.Entries = nil
+	lNode.Rectangle = &rectangle.Rectangle{}
 
 	// make a new node
 	newNode := &model.LeafNode{}
@@ -62,10 +62,8 @@ func splitLeaf(node model.Node) (model.Node, model.Node) {
 	entries, seed1, seed2 := pickSeedsLeaf(entries)
 	// fmt.Println(entries, *seed1, *seed2)
 	lNode.Insert(seed1)
-	lNode.UpdateRectangle()
 
 	newNode.Insert(seed2)
-	newNode.UpdateRectangle()
 	// then insert the rest according to insertNext until nothing left to insert
 	var pickedEntry *model.LeafEntry
 	var insertedNode *model.LeafNode
