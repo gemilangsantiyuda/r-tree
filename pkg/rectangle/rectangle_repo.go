@@ -21,8 +21,8 @@ func GetCombinedRectangle(rect1, rect2 *Rectangle) *Rectangle {
 		Y: math.Max(rect1.UpperRight.Y, rect2.UpperRight.Y),
 	}
 	LowerLeft := &coordinate.Coordinate{
-		X: math.Max(rect1.LowerLeft.X, rect2.LowerLeft.X),
-		Y: math.Max(rect1.LowerLeft.Y, rect2.LowerLeft.Y),
+		X: math.Min(rect1.LowerLeft.X, rect2.LowerLeft.X),
+		Y: math.Min(rect1.LowerLeft.Y, rect2.LowerLeft.Y),
 	}
 
 	return NewRectangle(LowerLeft, UpperRight)

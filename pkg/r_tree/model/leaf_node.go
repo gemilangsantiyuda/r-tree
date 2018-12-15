@@ -24,7 +24,7 @@ func (ln *LeafNode) UpdateRectangle() {
 	}
 
 	// else create new rectangle out of combined rectangles from all its entries
-	var newRect *rectangle.Rectangle
+	newRect := &rectangle.Rectangle{}
 	*newRect = *ln.Entries[0].Rectangle
 
 	for _, entry := range ln.Entries {

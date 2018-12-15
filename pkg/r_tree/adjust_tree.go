@@ -9,7 +9,7 @@ func (rtree *RTree) AdjustTree(node, node2 model.Node) {
 		// check if node2 is not null or the root was split before
 		if node2 != nil {
 			// make a new root and node + node2 as its new entries
-			var newRoot *model.BranchNode
+			newRoot := &model.BranchNode{}
 			newRoot.Insert(node)
 			newRoot.Insert(node2)
 			newRoot.UpdateRectangle()

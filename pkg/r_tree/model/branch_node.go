@@ -24,7 +24,7 @@ func (bn *BranchNode) UpdateRectangle() {
 	}
 
 	// else create new rectangle out of combined rectangles from all its entries
-	var newRect *rectangle.Rectangle
+	newRect := &rectangle.Rectangle{}
 	*newRect = *bn.Entries[0].GetRectangle()
 
 	for _, entry := range bn.Entries {

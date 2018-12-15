@@ -28,7 +28,7 @@ func splitBranch(node model.Node) (model.Node, model.Node) {
 	bNode.Entries = nil
 
 	// make a new node
-	var newNode *model.BranchNode
+	newNode := &model.BranchNode{}
 
 	// pick seed1 and seed2 , the 2 initial entries that each will be inserted into different nodes
 	entries, seed1, seed2 := pickSeeds(entries)
@@ -56,10 +56,11 @@ func splitLeaf(node model.Node) (model.Node, model.Node) {
 	lNode.Entries = nil
 
 	// make a new node
-	var newNode *model.LeafNode
+	newNode := &model.LeafNode{}
 
 	// pick seed1 and seed2 , the 2 initial entries that each will be inserted into different nodes
 	entries, seed1, seed2 := pickSeedsLeaf(entries)
+	// fmt.Println(entries, *seed1, *seed2)
 	lNode.Insert(seed1)
 	lNode.UpdateRectangle()
 
@@ -85,6 +86,9 @@ func pickSeeds(entries []model.Node) ([]model.Node, model.Node, model.Node) {
 
 			rect2 := entries[idx2].GetRectangle()
 			newRect := rectangle.GetCombinedRectangle(rect1, rect2)
+			// fmt.Println(*newRect.LowerLeft)
+			// fmt.Println(*newRect.UpperRight)
+			// fmt.Println(newRect.Area)
 			if newRect.Area > maxArea {
 				bestIdx1, bestIdx2 = idx1, idx2
 				maxArea = newRect.Area

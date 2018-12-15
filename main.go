@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"reflect"
 
 	"github.com/r-tree/pkg/coordinate"
 	rtree "github.com/r-tree/pkg/r_tree"
@@ -25,6 +24,12 @@ func main() {
 	}
 
 	Tree := rtree.NewTree(minEntry, maxEntry)
-
-	fmt.Print(reflect.TypeOf(Tree))
+	for _, coord := range coordList {
+		fmt.Println(coord)
+	}
+	for idx := range coordList {
+		coord := coordList[idx]
+		Tree.Insert(idx, &coord)
+		// fmt.Println("success", idx+1)
+	}
 }
