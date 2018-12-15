@@ -12,9 +12,7 @@ func (rtree *RTree) adjustTree(node, node2 model.Node) {
 			newRoot := &model.BranchNode{}
 			newRoot.Insert(node)
 			newRoot.Insert(node2)
-			newRoot.UpdateRectangle()
-			node.SetParent(newRoot)
-			node2.SetParent(newRoot)
+			rtree.Root = newRoot
 			return
 		}
 		// if root was not split then tree adjustment is done
@@ -31,12 +29,11 @@ func (rtree *RTree) adjustTree(node, node2 model.Node) {
 	}
 	// if the parent entries' size exceed max entry then split the parent
 	if len(parent.Entries) > rtree.MaxEntry {
-		// parent, parent2 := rtree.Split(parent)
+		parent, parent2 := rtree.split(parent)
 		// then adjust tree right up with parent and parent2
-		rtree.adjustTree(parent /*parent2*/, nil)
+		rtree.adjustTree(parent, parent2)
 	} else {
 		// update parent rectangle and adjust tree up to parent
-		parent.UpdateRectangle()
 		rtree.adjustTree(parent, nil)
 	}
 }

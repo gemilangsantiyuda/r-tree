@@ -21,7 +21,8 @@ func (rtree *RTree) ChooseLeaf(node model.Node, index int, rect *rectangle.Recta
 	minimumArea := math.Inf(1)
 	// cast to branch node
 	branchNode := node.(*model.BranchNode)
-	for _, entry := range branchNode.Entries {
+	for idx := range branchNode.Entries {
+		entry := branchNode.Entries[idx]
 		newRect := rectangle.GetCombinedRectangle(rect, entry.GetRectangle())
 		if newRect.Area < minimumArea {
 			minimumArea = newRect.Area
