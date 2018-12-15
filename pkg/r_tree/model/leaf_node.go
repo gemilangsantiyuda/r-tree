@@ -27,9 +27,12 @@ func (ln *LeafNode) UpdateRectangle() {
 	newRect := &rectangle.Rectangle{}
 	*newRect = *ln.Entries[0].Rectangle
 
-	for _, entry := range ln.Entries {
+	for idx := range ln.Entries {
+		entry := ln.Entries[idx]
 		rect := entry.Rectangle
+		// fmt.Println(rect.LowerLeft, rect.UpperRight, "+ ", newRect.LowerLeft, newRect.UpperRight, "=")
 		newRect = rectangle.GetCombinedRectangle(newRect, rect)
+		// fmt.Println(newRect.LowerLeft, newRect.UpperRight)
 	}
 
 	ln.Rectangle = newRect
@@ -39,6 +42,7 @@ func (ln *LeafNode) UpdateRectangle() {
 func (ln *LeafNode) Insert(leafEntry *LeafEntry) {
 	leafEntry.Parent = ln
 	ln.Entries = append(ln.Entries, leafEntry)
+	ln.UpdateRectangle()
 }
 
 // GetParent get this node's parent node

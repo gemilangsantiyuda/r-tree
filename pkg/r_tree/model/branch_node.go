@@ -27,7 +27,8 @@ func (bn *BranchNode) UpdateRectangle() {
 	newRect := &rectangle.Rectangle{}
 	*newRect = *bn.Entries[0].GetRectangle()
 
-	for _, entry := range bn.Entries {
+	for idx := range bn.Entries {
+		entry := bn.Entries[idx]
 		rect := entry.GetRectangle()
 		newRect = rectangle.GetCombinedRectangle(newRect, rect)
 	}
@@ -39,6 +40,7 @@ func (bn *BranchNode) UpdateRectangle() {
 func (bn *BranchNode) Insert(node Node) {
 	node.SetParent(bn)
 	bn.Entries = append(bn.Entries, node)
+	bn.UpdateRectangle()
 }
 
 // GetParent get this node's parent
