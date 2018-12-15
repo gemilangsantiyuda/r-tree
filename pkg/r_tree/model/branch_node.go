@@ -17,7 +17,7 @@ func (bn *BranchNode) GetRectangle() *rectangle.Rectangle {
 }
 
 // UpdateRectangle updating rectangle as combined area of its entries' rectangles
-func (bn *BranchNode) UpdateRectangle() {
+func (bn *BranchNode) updateRectangle() {
 	// if it has no entries, just return
 	if len(bn.Entries) == 0 {
 		return
@@ -40,7 +40,7 @@ func (bn *BranchNode) UpdateRectangle() {
 func (bn *BranchNode) Insert(node Node) {
 	node.SetParent(bn)
 	bn.Entries = append(bn.Entries, node)
-	bn.UpdateRectangle()
+	bn.updateRectangle()
 }
 
 // GetParent get this node's parent

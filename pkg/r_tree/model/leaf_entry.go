@@ -9,12 +9,6 @@ type LeafEntry struct {
 	Index     int
 }
 
-// UpdateRectangle method so that this struct implements Node
-func (le *LeafEntry) UpdateRectangle() {
-	// update rectangle unnecessary
-	return
-}
-
 // GetRectangle method to return its rectangle (implement Node)
 func (le *LeafEntry) GetRectangle() *rectangle.Rectangle {
 	return le.Rectangle
