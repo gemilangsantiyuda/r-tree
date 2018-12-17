@@ -36,6 +36,16 @@ func (PQ PriorityQueue) Pop() (model.Node, float64) {
 	return item.Object, item.Priority
 }
 
+// Len , get the size of PQ
+func (PQ PriorityQueue) Len() int {
+	return PQ.pq.Len()
+}
+
+// IsEmpty check wether PQ is empty or not
+func (PQ PriorityQueue) IsEmpty() bool {
+	return PQ.pq.Len() == 0
+}
+
 type priorityqueue []*Item
 
 func (pq priorityqueue) Len() int {
