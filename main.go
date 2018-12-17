@@ -4,14 +4,12 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/r-tree/pkg/rectangle"
-
 	"github.com/r-tree/pkg/coordinate"
 	rtree "github.com/r-tree/pkg/r_tree"
 )
 
 func main() {
-	const coordN = 10
+	const coordN = 10000
 	const minEntry = 2
 	const maxEntry = 4
 	var coordList []coordinate.Coordinate
@@ -35,19 +33,25 @@ func main() {
 		// fmt.Println("success", idx+1)
 	}
 
-	rect := &rectangle.Rectangle{
-		LowerLeft: &coordinate.Coordinate{
-			X: 14,
-			Y: 0,
-		},
-		UpperRight: &coordinate.Coordinate{
-			X: 17,
-			Y: 17,
-		},
-	}
-	indexes := Tree.Search(rect)
+	// rect := &rectangle.Rectangle{
+	// 	LowerLeft: &coordinate.Coordinate{
+	// 		X: 0,
+	// 		Y: 0,
+	// 	},
+	// 	UpperRight: &coordinate.Coordinate{
+	// 		X: 50,
+	// 		Y: 50,
+	// 	},
+	// }
+	// Tree.Traverse(Tree.Root)
+	// Tree.Remove(1, &coordList[1])
+	// fmt.Println("++++++++++++++++++++++++")
+	// Tree.Traverse(Tree.Root)
+}
+
+func printCoords(indexList []int, coordList []coordinate.Coordinate) {
 	fmt.Println("___")
-	for _, index := range indexes {
-		fmt.Println(coordList[index])
+	for _, idx := range indexList {
+		fmt.Println(coordList[idx])
 	}
 }
