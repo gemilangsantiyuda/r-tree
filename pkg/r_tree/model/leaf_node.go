@@ -1,6 +1,8 @@
 package model
 
 import (
+	"errors"
+
 	"github.com/r-tree/pkg/rectangle"
 )
 
@@ -53,4 +55,24 @@ func (ln *LeafNode) GetParent() Node {
 // SetParent set this node's parent node
 func (ln *LeafNode) SetParent(node Node) {
 	ln.Parent = node.(*BranchNode)
+}
+
+// RemoveChild to remove a child, return error if child's not found
+func (ln *LeafNode) RemoveChild(entry *LeafEntry) error {
+
+	removedIdx := -1
+	for idx := range ln.Entries {
+		if ln.Entries[idx] == entry {
+			removedIdx = idx
+			break
+		}
+	}
+
+	if removedIdx == -1 {
+		err := errors.New("Child not found")
+		return err
+	}
+
+	ln.Entries = append(ln.Entries[:removedIdx], ln.Entries[removedIdx+1:]...)
+	return nil
 }
