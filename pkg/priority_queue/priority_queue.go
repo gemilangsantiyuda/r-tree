@@ -31,9 +31,9 @@ func (PQ PriorityQueue) Push(node model.Node, priority float64) {
 }
 
 // Pop the nearest node
-func (PQ PriorityQueue) Pop() (model.Node, float64) {
+func (PQ PriorityQueue) Pop() model.Node {
 	item := heap.Pop(&PQ.pq).(*Item)
-	return item.Object, item.Priority
+	return item.Object
 }
 
 // Len , get the size of PQ
